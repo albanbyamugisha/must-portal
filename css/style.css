@@ -1,0 +1,178 @@
+/* ---------- Basic setup ---------- */
+
+/* putting my colours here so I can change them in one place if I want a new look */
+:root {
+  --navy: #0B2545;
+  --navy-light: #13386b;
+  --amber: #F2A900;
+  --amber-dark: #d29200;
+  --bg: #F5F7FA;
+  --text: #333333;
+  --muted: #6b7280;
+  --line: #d9dee7;
+  --error: #c62828;
+}
+
+/* reset, otherwise browsers add random spacing everywhere */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Inter", Arial, sans-serif; /* Arial is the backup if the font fails to load */
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.5;
+}
+
+h1, h2 { font-family: "Poppins", Arial, sans-serif; }
+
+
+/* ---------- Split layout ---------- */
+
+/* two columns, left is smaller (5 parts) and right is bigger (7 parts) */
+.layout {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  min-height: 100vh; /* so it always fills the full screen height */
+}
+
+
+/* ---------- Left panel (brand) ---------- */
+
+.brand-panel {
+  background: linear-gradient(160deg, var(--navy), var(--navy-light));
+  color: #fff;
+  padding: 48px 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.logo { display: flex; align-items: center; gap: 14px; font-size: 14px; }
+
+/* temporary round crest, I will swap it for the real logo image later */
+.crest {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--navy);
+  border: 3px solid var(--amber);
+  display: grid; place-items: center;
+  font-weight: 700; font-size: 13px;
+}
+
+.brand-panel h1 { font-size: 34px; line-height: 1.2; margin-top: 24px; }
+.tagline { opacity: 0.85; }
+
+/* numbered steps, the numbers come from a CSS counter so I didn't type them by hand */
+.steps { margin-top: 8px; padding-left: 0; list-style: none; counter-reset: step; }
+.steps li {
+  counter-increment: step;
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 14px; font-size: 15px;
+}
+.steps li::before {
+  content: counter(step);
+  flex: none; /* stops the circle from getting squashed when the text is long */
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--amber);
+  color: var(--navy);
+  font-weight: 600; font-size: 13px;
+  display: grid; place-items: center;
+}
+
+
+/* ---------- Right panel (form) ---------- */
+
+/* centres the white card both ways */
+.form-panel { display: flex; align-items: center; justify-content: center; padding: 32px; }
+
+.form-box {
+  width: 100%;
+  max-width: 440px; /* stops the card from getting too wide on big screens */
+  background: #fff;
+  padding: 36px;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(11, 37, 69, 0.1);
+}
+
+.form-box h2 { font-size: 26px; color: var(--navy); }
+.subtitle { color: var(--muted); margin-bottom: 22px; font-size: 14px; }
+
+label { display: block; font-size: 14px; font-weight: 600; margin: 14px 0 6px; }
+
+input, select {
+  width: 100%;
+  padding: 12px;
+  font: inherit; /* makes inputs use the same font as the page, they don't by default */
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+/* blue glow when you click inside a box, helps people see where they are typing */
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--navy-light);
+  box-shadow: 0 0 0 3px rgba(19, 56, 107, 0.2);
+}
+
+/* JavaScript adds this class when a field is wrong */
+input.invalid { border-color: var(--error); }
+
+/* min-height keeps the space reserved so the form doesn't jump when an error shows up */
+.error { display: block; color: var(--error); font-size: 12.5px; min-height: 16px; margin-top: 4px; }
+
+/* the show/hide button sits inside the password box, so the wrapper is relative */
+.password-wrap { position: relative; }
+.password-wrap button {
+  position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+  border: 0; background: none; color: var(--navy-light);
+  font-weight: 600; font-size: 13px; cursor: pointer; padding: 6px;
+}
+
+
+/* ---------- Buttons ---------- */
+
+/* both buttons share the same shape, only the colours are different */
+.btn-primary, .btn-secondary {
+  display: block; width: 100%;
+  padding: 13px;
+  border-radius: 8px;
+  font: inherit; font-weight: 600;
+  text-align: center; text-decoration: none; /* removes the underline since btn-secondary is a link */
+  cursor: pointer;
+}
+
+.btn-primary { margin-top: 18px; border: 0; background: var(--amber); color: var(--navy); }
+.btn-primary:hover { background: var(--amber-dark); }
+
+.btn-secondary { border: 2px solid var(--navy); color: var(--navy); background: #fff; }
+.btn-secondary:hover { background: var(--navy); color: #fff; } /* colours flip on hover */
+
+.forgot { display: block; margin-top: 14px; font-size: 14px; color: var(--navy-light); }
+.divider { text-align: center; color: var(--muted); font-size: 13px; margin: 20px 0 12px; }
+
+
+/* ---------- Create account page extras ---------- */
+
+/* country code box is fixed at 150px, the number box takes whatever space is left */
+.phone-row { display: grid; grid-template-columns: 150px 1fr; gap: 10px; }
+.hint { font-size: 12.5px; color: var(--muted); margin-top: 4px; }
+.hint a { color: var(--navy-light); }
+
+/* hidden at first, JavaScript changes it to display: block after a successful sign up */
+.success { display: none; margin-top: 14px; padding: 10px 12px; border-radius: 8px; background: #e6f4ea; color: #1b6b36; font-size: 14px; }
+
+
+/* ---------- Phones and small screens ---------- */
+
+/* below 820px wide the two columns become one, brand panel on top and form under it */
+@media (max-width: 820px) {
+  .layout { grid-template-columns: 1fr; }
+  .brand-panel { padding: 28px 22px; }
+  .brand-panel h1 { font-size: 26px; margin-top: 8px; }
+  .steps { display: none; } /* hiding the steps on phones to save space */
+  .form-panel { padding: 20px 14px; }
+  .form-box { padding: 26px 20px; }
+}
