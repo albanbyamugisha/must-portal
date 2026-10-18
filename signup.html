@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | MUST Online Application Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="brand-panel">
+        <div class="logo">
+          <div class="crest">MUST</div>
+          <p>Mbarara University of<br />Science and Technology</p>
+        </div>
+        <h1>Your future starts here.</h1>
+        <p class="tagline">Apply to MUST online in four simple steps.</p>
+        <ol class="steps">
+          <li>Create your account</li>
+          <li>Log in with your temporary password</li>
+          <li>Fill in and submit the application form</li>
+          <li>Pay the application fee at the bank</li>
+        </ol>
+      </aside>
+
+      <main class="form-panel">
+        <div class="form-box">
+          <h2>Welcome back</h2>
+          <p class="subtitle">Log in to access your application dashboard.</p>
+
+          <form id="loginForm" novalidate>
+            <label for="email">Email address</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="name@example.com"
+              required
+            />
+            <span class="error" id="emailError"></span>
+
+            <label for="password">Password</label>
+            <div class="password-wrap">
+              <input
+                type="password"
+                id="password"
+                placeholder="Enter your password"
+                required
+              />
+              <button type="button" id="togglePassword">Show</button>
+            </div>
+            <span class="error" id="passwordError"></span>
+
+            <button type="submit" class="btn-primary">Sign in</button>
+          </form>
+
+          <a href="#" class="forgot">Forgot your password?</a>
+
+          <p class="divider">New to the portal?</p>
+          <a href="signup.html" class="btn-secondary">Create account</a>
+        </div>
+      </main>
+    </div>
+    <script src="js/script.js"></script>
+  </body>
+</html>
