@@ -4,9 +4,36 @@
     <!-- basic setup, same as the login page so both pages behave the same -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- meta tags for this page -->
+    <meta
+      name="description"
+      content="Create your MUST Online Application Portal account to start applying to Mbarara University of Science and Technology."
+    />
+    <meta name="author" content="Byamugisha Alban" />
+
+    <!-- Open Graph for nice previews when the link is shared -->
+    <meta
+      property="og:title"
+      content="Create Account | MUST Online Application Portal"
+    />
+    <meta
+      property="og:description"
+      content="Create your account and get a temporary password by email."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:image"
+      content="https://albanbyamugisha.github.io/must-portal/images/must_logo.png"
+    />
+    <meta
+      property="og:url"
+      content="https://albanbyamugisha.github.io/must-portal/signup.html"
+    />
+
     <title>Create Account | MUST Online Application Portal</title>
 
-    <!-- fonts from google, Poppins for headings and Inter for normal text -->
+    <!-- fonts from google -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -19,25 +46,54 @@
   </head>
   <body>
     <div class="layout">
-      <!-- LEFT SIDE: the navy brand panel, copied from the login page so the two screens match -->
+      <!-- LEFT SIDE: same brand panel as the login page so the two screens match -->
       <aside class="brand-panel">
-        <div class="logo">
-          <div class="crest">MUST</div>
-          <p>Mbarara University of<br />Science and Technology</p>
-        </div>
-        <h1>Start your application.</h1>
-        <p class="tagline">It only takes a minute to get your account ready.</p>
+        <header>
+          <div class="logo">
+            <img
+              src="images/must_logo.png"
+              alt="Mbarara University of Science and Technology crest"
+              class="crest-img"
+              width="56"
+              height="56"
+            />
+            <p>Mbarara University of<br />Science and Technology</p>
+          </div>
 
-        <!-- I changed these steps a bit because here the user is still on step 1 -->
-        <ol class="steps">
-          <li>Fill in your details on this page</li>
-          <li>We send a temporary password to your email</li>
-          <li>Log in and complete the application form</li>
-          <li>Pay the application fee at the bank</li>
-        </ol>
+          <!-- this time Create account is the current page -->
+          <nav class="main-nav" aria-label="Main navigation">
+            <a href="index.html">Login</a>
+            <a href="signup.html" aria-current="page">Create account</a>
+          </nav>
+        </header>
+
+        <section>
+          <h1>Start your application.</h1>
+          <p class="tagline">
+            It only takes a minute to get your account ready.
+          </p>
+
+          <!-- steps changed a bit because the user is on step 1 here -->
+          <ol class="steps">
+            <li>Fill in your details on this page</li>
+            <li>We send a temporary password to your email</li>
+            <li>Log in and complete the application form</li>
+            <li>Pay the application fee at the bank</li>
+          </ol>
+        </section>
+
+        <footer>
+          <p>&copy; 2026 Mbarara University of Science and Technology</p>
+          <p>
+            Need help?
+            <a href="mailto:admissions@must.ac.ug"
+              >Email admissions@must.ac.ug</a
+            >
+          </p>
+        </footer>
       </aside>
 
-      <!-- RIGHT SIDE: the actual sign up form -->
+      <!-- RIGHT SIDE: the sign up form inside main -->
       <main class="form-panel">
         <div class="form-box">
           <h2>Create account</h2>
@@ -45,9 +101,9 @@
             Give us your details and we will send you a temporary password.
           </p>
 
-          <!-- novalidate means the browser's own popups are off, I do the checking in JavaScript instead -->
+          <!-- novalidate = browser popups off, JavaScript checks instead -->
           <form id="signupForm" novalidate>
-            <!-- the MUST portal splits the name into surname and other names, so I did the same -->
+            <!-- the real portal splits the name into surname and other names, so I did the same -->
             <label for="surname">Surname</label>
             <input
               type="text"
@@ -66,9 +122,13 @@
             />
             <span class="error" id="otherNamesError"></span>
 
-            <!-- phone number has two parts: the country code dropdown and the number itself -->
+            <!-- phone has two parts: country code dropdown and the number -->
             <label for="phone">Phone number</label>
             <div class="phone-row">
+              <!-- every input needs a label, this one is hidden on screen but screen readers still read it -->
+              <label for="countryCode" class="visually-hidden"
+                >Country code</label
+              >
               <select id="countryCode">
                 <option value="+256">Uganda (+256)</option>
                 <option value="+254">Kenya (+254)</option>
@@ -92,14 +152,14 @@
               placeholder="myemail@gmail.com"
               required
             />
-            <!-- the real portal helps people who have no email, so I added a link for that too -->
+            <!-- link text says where it goes (not "click here"), opens in a new tab so the form is not lost -->
             <p class="hint">
               No email yet?
               <a
                 href="https://accounts.google.com/signup"
                 target="_blank"
                 rel="noopener"
-                >Create one here</a
+                >Create a free Gmail address</a
               >
             </p>
             <span class="error" id="emailError"></span>
@@ -107,7 +167,7 @@
             <button type="submit" class="btn-primary">Create account</button>
           </form>
 
-          <!-- this stays hidden until the form passes all the checks, JavaScript will show it -->
+          <!-- hidden until the form passes all the checks -->
           <p class="success" id="successMessage"></p>
 
           <p class="divider">Already have an account?</p>
@@ -116,7 +176,7 @@
       </main>
     </div>
 
-    <!-- script goes at the bottom so the page loads first, then the code runs -->
+    <!-- script at the bottom so the page loads first -->
     <script src="js/script.js"></script>
   </body>
 </html>
